@@ -1,0 +1,25 @@
+#include <vector>
+#include <unordered_map>
+
+class Solution {
+public:
+    int findCenter(std::vector<std::vector<int>>& edges) {
+        std::unordered_map<int, int> nodeCount;
+        
+        for (const auto& edge : edges) {
+            nodeCount[edge[0]]++;
+            nodeCount[edge[1]]++;
+        }
+        
+        int center = -1;
+        int maxCount = 0;
+        for (const auto& [node, count] : nodeCount) {
+            if (count > maxCount) {
+                maxCount = count;
+                center = node;
+            }
+        }
+        
+        return center;
+    }
+};
